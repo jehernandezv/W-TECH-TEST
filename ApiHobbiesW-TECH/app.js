@@ -2,16 +2,22 @@ import createError from 'http-errors';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
-import indexRouter from './routes/index.js';
-
+import dotenv from 'dotenv';
+import {DBConnectMongoose} from './config/db/db.js'
+dotenv.config();
 var app = express();
+
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+/**Routes */
+import indexRouter from './routes/index.js';
+import notesRouter from './routes/note.js'
 app.use('/', indexRouter);
+app.use('/note', notesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -29,7 +35,16 @@ app.use(function(err, req, res, next) {
   res.send('error');
 });
 
-app.listen(3000, () => {
-  console.log("server listening on port: ", 3000);
-})
+var port = process.env.PORT || 3000;
+
+
+DBConnectMongoose().then(() => {
+  app.listen(port, () => {
+    console.log("server listening on port: ", port);
+  });
+}).catch(err => {
+  console.log('err: ' , err)
+});
+
+
 
