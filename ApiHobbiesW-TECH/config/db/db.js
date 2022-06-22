@@ -1,11 +1,11 @@
 import mongoose from 'mongoose';
 
-var db;
+let dataBase;
 
-var DBConnectMongoose = function() {
+const DBConnectMongoose = function() {
     return new Promise(function(resolve, reject) {
-        if (db) {
-            return db;
+        if (dataBase) {
+            return dataBase;
         }
         mongoose.Promise = global.Promise;
 
@@ -13,18 +13,18 @@ var DBConnectMongoose = function() {
         mongoose.connect('mongodb://' + process.env.API_WTECH_MONGODB_HOST + ":" + process.env.API_WTECH_MONGODB_PORT + "/" + process.env.API_WTECH_MONGODB_NAME)
             .then(() => {
                 console.log('mongo connection created');
-                resolve(db);
+                resolve(dataBase);
             })
             .catch(err => {
                 console.log('error creating db connection: ' + err);
-                reject(db);
+                reject(dataBasedb);
             });
     });
 };
 
-var getDBConexion = function () {
-    if (db) {
-        return db;
+const getDBConexion = function () {
+    if (dataBase) {
+        return dataBase;
     }else{
         console.log('There is no mongo connection');
         return null;
