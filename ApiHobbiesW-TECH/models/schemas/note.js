@@ -1,7 +1,8 @@
 import mongoose from 'mongoose';
-let Schema = mongoose.Schema;
-let model = mongoose.model;
+const Schema = mongoose.Schema;
+const model = mongoose.model;
 
+/** Definimos el esquema ODM con la ayuda de Schema */
 const noteSchema = new Schema({
     note: { type: String, required: true}
 },
@@ -9,10 +10,15 @@ const noteSchema = new Schema({
     timestamps: true
 });
 
-var NoteModel = model('note', noteSchema);
+/**Creamos un modelo con base al Schema anterior el cual sera almacenado en una coleccion notes */
+const NoteModel = model('note', noteSchema);
 
+/** Definimos el saveNote para tratar el proceso de guardado en la base de datos
+ * @ingresa un objeto con los campos del noteSchema
+ * @return Este retorna una promesa la cual sera resulta finalmente en el controlador
+ */
 const saveNote = (noteData) => {
-    var note = new NoteModel(noteData);
+    let note = new NoteModel(noteData);
     return new Promise(function (resolve, reject){
         note.save().then(noteAdd => {
             resolve(noteAdd);
@@ -22,9 +28,15 @@ const saveNote = (noteData) => {
     });
 }
 
+/** Definimos el editNote para tratar el proceso de actualizar un documento en la base de datos
+ * @query un objeto con los campos a comparar y conseguir una coincidencia de documentos
+ * @noteData objeto set con los campos para actualizar
+ * @return Este retorna una promesa la cual sera resulta finalmente en el controlador
+ */
 const editNote = (query, noteData) => {
     return new Promise(function (resolve, reject) {
         NoteModel.findOneAndUpdate(query, noteData, {returnDocument: true}).then(updated => {
+            if(!updated) reject('Error update note')
             resolve(updated);
         }).catch(err => {
             reject('Error updated note: ' + err);
@@ -32,6 +44,10 @@ const editNote = (query, noteData) => {
     });
 }
 
+/** Definimos el removeNote para tratar el proceso de remover un documento en la base de datos
+ * @query un objeto con los campos a comparar y conseguir una coincidencia de documentos
+ * @return Este retorna una promesa la cual sera resulta finalmente en el controlador
+ */
 const removeNote = (query) => {
     return new Promise(function (resolve, reject) {
         NoteModel.findOneAndDelete(query).then(deleted => {
@@ -43,6 +59,10 @@ const removeNote = (query) => {
     });
 }
 
+/** Definimos el editNote para tratar el proceso de actualizar un documento en la base de datos
+ * @query un objeto con los campos a comparar y conseguir una coincidencia de documentos
+ * @return Este retorna una promesa la cual sera resulta finalmente en el controlador
+ */
 const enumNote = (query) => {
     return new Promise(function (resolve, reject) {
         NoteModel.find(query).then(note => {
@@ -53,4 +73,5 @@ const enumNote = (query) => {
     });
 }
 
+/**Exportamos todos los métodos propios del modelo note */
 export {NoteModel, saveNote, editNote, removeNote, enumNote}
