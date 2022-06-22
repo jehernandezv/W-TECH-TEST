@@ -5,7 +5,7 @@ import logger from 'morgan';
 import dotenv from 'dotenv';
 import {DBConnectMongoose} from './config/db/db.js'
 dotenv.config();
-var app = express();
+const app = express();
 
 
 app.use(logger('dev'));
@@ -35,9 +35,9 @@ app.use(function(err, req, res, next) {
   res.send('error');
 });
 
-var port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 
-
+/**Solo inicia el server express si la base de datos esta ok */
 DBConnectMongoose().then(() => {
   app.listen(port, () => {
     console.log("server listening on port: ", port);
