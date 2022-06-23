@@ -29,6 +29,7 @@ export class NotesComponent implements OnInit {
       this.notesService.saveNote(this.selectedNote).subscribe({
         complete: () => {
             this.onSuccess("Se ha ingresado un nota correctamente")
+            this.selectedNote = new Note()
           }, // completeHandler
         error: (err) => { this.onError("No se pudo guardar la nota. Error: " + err.name)},    // errorHandler 
         next: (note) =>{  this.notes.push(note) }    // nextHandler

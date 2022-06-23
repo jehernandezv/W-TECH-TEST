@@ -1,5 +1,6 @@
 import { saveNote, enumNote, editNote, removeNote } from '../models/schemas/note.js'
 
+
 /**
  * Esta funcion recibe la peticion de agregar una nota
  * @param req 

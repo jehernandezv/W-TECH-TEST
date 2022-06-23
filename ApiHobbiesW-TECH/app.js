@@ -48,5 +48,4 @@ DBConnectMongoose().then(() => {
   console.log('err: ' , err)
 });
 
-
-
+export default app;
