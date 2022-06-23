@@ -3,11 +3,13 @@ import express from 'express';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import {DBConnectMongoose} from './config/db/db.js'
 dotenv.config();
 const app = express();
 
-
+/**Middlewares */
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
