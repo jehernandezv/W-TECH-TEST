@@ -11,7 +11,7 @@ import { NotificationsService } from 'angular2-notifications';
 export class NotesComponent implements OnInit {
 
   selectedNote: Note = new Note()
-
+  public page: number | undefined;
   notes: Note[] = [];
   isEdit = false;
 

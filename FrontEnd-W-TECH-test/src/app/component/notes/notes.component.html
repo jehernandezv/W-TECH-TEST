@@ -9,7 +9,8 @@
       </div>
       <!-- <form> -->
       <div class="form-group">
-        <input type="text" [(ngModel)]="selectedNote.note" placeholder="Escriba aqui" class="form-control mt-2" required>
+        <input type="text" [(ngModel)]="selectedNote.note" placeholder="Escriba aqui" class="form-control mt-2"
+               required>
       </div>
 
       <button (click)="saveNote()" class="btn btn-primary mt-2" [disabled]="!selectedNote.note">
@@ -28,19 +29,24 @@
     </thead>
 
     <tbody>
-      <tr *ngFor="let note of notes; let i = index">
-        <td>{{i + 1}}</td>
-        <td>{{note.note}}</td>
+    <tr *ngFor="let note of notes |  paginate: { itemsPerPage: 5, currentPage: page }; let i = index; ">
+      <td>{{i + 1}}</td>
+      <td>{{note.note}}</td>
 
-        <td>
+      <td>
           <span class="table-remove">
             <button type="button" (click)="openForEdit(note)" class="btn btn-outline-success mx-2">Editar</button>
           </span>
-          <span class="table-remove">
+        <span class="table-remove">
             <button type="button" (click)="deleteNote(note)" class="btn btn-outline-danger">Borrar</button>
           </span>
-        </td>
-      </tr>
+      </td>
+    </tr>
     </tbody>
   </table>
+  <pagination-controls
+    (pageChange)="page=$event"
+    previousLabel="Anterior"
+    nextLabel="Siguiente">
+  </pagination-controls>
 </div>
