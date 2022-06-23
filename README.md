@@ -9,9 +9,9 @@ This project uses the following environment variables:
 | Name                          | Description                         | Default Value                                  |
 | ----------------------------- | ------------------------------------| -----------------------------------------------|
 |PORT                           | Puerto de servidor                  |                                                |
-|API_WTECH_MONGODB_HOST         | Host de base de tatos mongoDB       |                                                |
-|API_WTECH_MONGODB_PORT         | Puerto donde corra mongoDB          |                                                |
-|API_WTECH_MONGODB_NAME         | Nombre de base de datos a usar db   |                                                |
+|API_WTECH_MONGODB_HOST         | Host de base de datos mongoDB       |                                                |
+|API_WTECH_MONGODB_PORT         | Puerto donde corre mongoDB          |                                                |
+|API_WTECH_MONGODB_NAME         | Nombre de base de datos a usar      |                                                |
 
 # Pre-requisites
 - Install [Node.js](https://nodejs.org/en/) version 8.0.0^
@@ -37,7 +37,6 @@ npm run dev
 
 
 ## Testing
-The tests are  written in Mocha and the assertions done using Chai
 
 ```
 "jest": "^28.1.1",
@@ -46,7 +45,6 @@ The tests are  written in Mocha and the assertions done using Chai
 ### Running tests using NPM Scripts
 ````
 npm run test
-
 ````
 
 # Postman
@@ -321,7 +319,8 @@ This project uses the following environment variables:
 
 
 # Pre-requisites
-- Install [Node.js](https://nodejs.org/en/) version 13.0.0^
+- Install [Node.js](https://nodejs.org/en/) version 8.0.0^
+- Install Angular version 13.0.0^
 
 
 # Getting started
