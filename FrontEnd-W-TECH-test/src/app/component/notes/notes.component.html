@@ -1,5 +1,8 @@
 <div class="container">
   <div class="card mt-4">
+    <div class="card-header">
+      <h2>Mis Notas</h2>
+    </div>
     <div class="card-body ">
       <div class="card-title">
         Aqui puede ingresar sus notas
@@ -9,7 +12,7 @@
         <input type="text" [(ngModel)]="selectedNote.note" placeholder="Escriba aqui" class="form-control mt-2" required>
       </div>
 
-      <button (click)="saveNote()" class="btn btn-primary mt-2">
+      <button (click)="saveNote()" class="btn btn-primary mt-2" [disabled]="!selectedNote.note">
         Guardar
       </button>
       <!-- </form> -->
@@ -40,6 +43,4 @@
       </tr>
     </tbody>
   </table>
-
- <!--   <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>-->
 </div>

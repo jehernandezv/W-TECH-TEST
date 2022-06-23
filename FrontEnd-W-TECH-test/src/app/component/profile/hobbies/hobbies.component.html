@@ -1,0 +1,27 @@
+<div class="container"> 
+    <div class="card mt-4">
+      <div class="card-header">
+        <h2>Hobbies</h2>
+      </div>
+      <div class="card-body">
+
+      <div class="card mb-3" style="max-width: 100%;">
+        <div class="row g-0">
+          <div class="col-md-4" style="max-height: 187px;"> <img src="{{hobbie.urlImg}}" class="img-fluid rounded-start" alt="Img de hobbie"> </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title" style="text-transform: capitalize;">{{hobbie.hobbie}}</h5>
+              <p class="card-text">{{hobbie.description}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <button (click)="selectHobbie()" type="button" class="btn btn-lg btn-primary">Mostrar otro Hobbie</button>
+      </div>
+      
+
+      </div>
+    </div>
+</div>
