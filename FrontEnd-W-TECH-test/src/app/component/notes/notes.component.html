@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="card mt-4">
+    <div class="card-body ">
+      <div class="card-title">
+        Aqui puede ingresar sus notas
+      </div>
+      <!-- <form> -->
+      <div class="form-group">
+        <input type="text" [(ngModel)]="selectedNote.note" placeholder="Escriba aqui" class="form-control mt-2" required>
+      </div>
+
+      <button (click)="saveNote()" class="btn btn-primary mt-2">
+        Guardar
+      </button>
+      <!-- </form> -->
+    </div>
+  </div>
+
+  <table class="table table-bordered table-responsive-md text-center mt-4">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nota</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let note of notes; let i = index">
+        <td>{{i + 1}}</td>
+        <td>{{note.note}}</td>
+
+        <td>
+          <span class="table-remove">
+            <button type="button" (click)="openForEdit(note)" class="btn btn-outline-success mx-2">Editar</button>
+          </span>
+          <span class="table-remove">
+            <button type="button" (click)="deleteNote(note)" class="btn btn-outline-danger">Borrar</button>
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+ <!--   <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>-->
+</div>
